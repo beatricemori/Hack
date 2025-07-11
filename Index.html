@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Hack Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { background: black; color: lime; font-family: monospace; padding: 20px; }
+    #terminal { white-space: pre-line; }
+    #start { background: lime; color: black; border: none; padding: 10px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <button id="start">INICIAR HACK</button>
+  <div id="terminal"></div>
+  <audio id="type-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
+  <script>
+    const lines = [
+      "Conectando ao servidor secreto...", "IP encontrado: 192.168.42.1",
+      "Estabelecendo conexão...", "Conexão estabelecida.",
+      "Acessando banco de dados do sistema 🧠", "Senha detectada: ********",
+      "Descriptografando dados... 🔓", "Baixando arquivos secretos (83%)...",
+      "Sistema comprometido!", "Vazando dados para servidor anônimo...",
+      "Auto-destruição do sistema iniciada em 3...", "2...", "1...",
+      "💥 Sistema explodiu! HACK COMPLETO!"
+    ];
+    const term = document.getElementById('terminal');
+    const btn = document.getElementById('start');
+    const sound = document.getElementById('type-sound');
+    btn.onclick = () => {
+      btn.style.display = 'none';
+      let i = 0;
+      const iv = setInterval(() => {
+        if (i < lines.length) {
+          const d = document.createElement('div');
+          d.textContent = lines[i++];
+          term.appendChild(d);
+          sound.currentTime = 0;
+          sound.play();
+          window.scrollTo(0, document.body.scrollHeight);
+        } else clearInterval(iv);
+      }, 800);
+    };
+  </script>
+</body>
+</html>
